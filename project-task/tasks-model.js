@@ -15,9 +15,11 @@ function getProject() {
 }
 
 function getTask() {
-    return db('tasks')
-        // .innerJoin('project as p, t.project_id', 'p.id')
-        // .select('p.name', 'p.description', 't.description as tasks', 't.notes', 't.completed')
+    return db('tasks as t')
+        .select('p.name', 'p.description', 't.description', 't.notes', 't.completed')
+        .innerJoin('project as p', 't.project_id', 'p.id')
+        // .select('t.description', 't.notes', 't.completed', 'p.project_name', 'p.description')
+        // .innerJoin('projects as p', 't.project_id', '=', 'p.id')
 }
 
 function getResources() {

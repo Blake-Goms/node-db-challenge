@@ -20,11 +20,12 @@ router.get('/task', (req, res) => {
     tasks
         .getTask()
         .then(task => {
-            if (tasks) {
+            // res.status(200).json(task);
+            if (task) {
                 for (let i = 0; i < tasks.length; i++){
-                    tasks[i].task_completed === 0 ? tasks[i].task_completed = false : tasks[i].task_completed = true
+                    tasks[i].completed === 0 ? tasks[i].completed = false : tasks[i].completed = true
                 }
-                res.status(200).json(task);
+            res.status(200).json(task);
         }})
         .catch(error => {
             res.status(500).json({error: 'could not access database.'});
